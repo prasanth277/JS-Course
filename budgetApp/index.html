@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,600"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link type="text/css" rel="stylesheet" href="style.css" />
+    <title>Budget App</title>
+  </head>
+
+  <body>
+    <script src="app.js"></script>
+    <div class="headerContainer"><h1>Budget App</h1></div>
+    <div class="inputContainer">
+      <select name="budgetType" id="budgetType">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <input placeholder="Add description" id="descriptionInput" />
+      <input placeholder="Value" id="valueInput" />
+      <button id="addButton" onClick="addToBudget()">ADD</button>
+    </div>
+    <div class="budgetContainer">
+      <div class="incomeContainer">
+        <h3>Incomes</h3>
+      </div>
+      <div class="expenseContainer">
+        <h3>Expenses</h3>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
