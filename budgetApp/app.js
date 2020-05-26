@@ -33,10 +33,33 @@ function getEntryDetails() {
   }
 }
 
+function getTotalSum(type) {
+  let sum = 0;
+  data.map((item) => {
+    if (item.type === type) {
+      sum += item.value;
+    }
+  });
+  return sum;
+}
+
+function updateTotalValues() {
+  document.getElementById("incomeTotal").textContent = `+ ${getTotalSum(
+    "income"
+  )}`;
+  document.getElementById("expenseTotal").textContent = `- ${getTotalSum(
+    "expense"
+  )}`;
+  document.getElementById("totalBudget").textContent = `${
+    getTotalSum("income") - getTotalSum("expense")
+  }`;
+}
+
 function addToBudget() {
   let budgetEntry = getEntryDetails();
   addRow(budgetEntry);
   data.push(budgetEntry);
+  updateTotalValues();
 }
 
 function removeFromBudget(id) {
