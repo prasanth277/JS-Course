@@ -43,6 +43,7 @@ function getTotalSum(type) {
   let sum = 0;
   data.map((item) => {
     if (item.type === type) {
+      type = "number";
       sum += item.value;
     }
   });
@@ -56,10 +57,18 @@ function updateTotalValues() {
   document.getElementById("expenseTotal").textContent = `- ${getTotalSum(
     "expense"
   ).toFixed(2)}`;
-  document.getElementById("totalBudget").textContent = `${(
-    getTotalSum("income") - getTotalSum("expense")
-  ).toFixed(2)}`;
+  let budget = getTotalSum("income") - getTotalSum("expense");
+  document.getElementById("totalBudget").style.color =
+    budget >= 0 ? "green" : "red";
+
+  document.getElementById("totalBudget").textContent = `${budget.toFixed(2)}`;
 }
+
+document.addEventListener("keypress", function (event) {
+  if (event.keyCode === 13 || event.which === 13) {
+    addToBudget();
+  }
+});
 
 function addToBudget() {
   let budgetEntry = getEntryDetails();
