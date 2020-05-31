@@ -1,9 +1,5 @@
 var data = [];
 
-// var DOMConstants = {
-//   addButton,
-// };
-
 function Expense(description, value, type, id) {
   this.description = description;
   this.value = value;
@@ -16,6 +12,16 @@ function Income(description, value, type, id) {
   this.value = value;
   this.type = type;
   this.id = id;
+}
+
+function onSelectType(e) {
+  let type = document.getElementById("budgetType").value;
+
+  if (type === "income") {
+    document.getElementById("addButton").style.background = "green";
+  } else {
+    document.getElementById("addButton").style.background = "#dc0000";
+  }
 }
 
 function getEntryDetails() {
@@ -46,13 +52,13 @@ function getTotalSum(type) {
 function updateTotalValues() {
   document.getElementById("incomeTotal").textContent = `+ ${getTotalSum(
     "income"
-  )}`;
+  ).toFixed(2)}`;
   document.getElementById("expenseTotal").textContent = `- ${getTotalSum(
     "expense"
-  )}`;
-  document.getElementById("totalBudget").textContent = `${
+  ).toFixed(2)}`;
+  document.getElementById("totalBudget").textContent = `${(
     getTotalSum("income") - getTotalSum("expense")
-  }`;
+  ).toFixed(2)}`;
 }
 
 function addToBudget() {
@@ -65,23 +71,32 @@ function addToBudget() {
 function removeFromBudget(id) {
   const itemId = `item-${id}`;
   data = data.filter((item) => item.id !== id);
-  console.log("object", data, id);
   removeRow(itemId);
+  updateTotalValues();
 }
 
 function addRow(budgetEntry) {
   const { description, value, type, id } = budgetEntry;
-  var html = `<div class="budgetEntry" id="item-${id}">
-<span class="salaryText">${description}</span>
-<span class="salaryAmount">${value}/-</span>
-<button onClick="removeFromBudget(${id})">delete</button>
-</div>`;
-
+  var html;
   if (type === "income") {
+    html = `<div class="budgetEntry incomeText" id="item-${id}">
+    <span class="salaryText">${description}</span>
+    <div class="leftContainer"> 
+    <span class="salaryAmount">${value.toFixed(2)}</span>
+    <div class="deleteIcon" onClick="removeFromBudget(${id})"><i class="fa fa-trash"></i></div>
+    </div>
+    </div>`;
     document
       .querySelector(".incomeContainer")
       .insertAdjacentHTML("beforeend", html);
   } else {
+    html = `<div class="budgetEntry expenseText" id="item-${id}">
+    <span class="salaryText">${description}</span>
+    <div class="leftContainer"> 
+    <span class="salaryAmount">${value.toFixed(2)}</span>
+    <div class="deleteIcon" onClick="removeFromBudget(${id})"><i class="fa fa-trash"></i></div>
+    </div>
+    </div>`;
     document
       .querySelector(".expenseContainer")
       .insertAdjacentHTML("beforeend", html);

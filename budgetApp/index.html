@@ -6,11 +6,7 @@
       rel="stylesheet"
       type="text/css"
     />
-    <link
-      href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="style.css" />
     <title>Budget App</title>
   </head>
@@ -19,7 +15,7 @@
     <script src="app.js"></script>
     <div class="headerContainer"><h1>Budget App</h1></div>
     <div class="inputContainer">
-      <select name="budgetType" id="budgetType">
+      <select name="budgetType" id="budgetType" onchange="onSelectType()">
         <option value="income">Income</option>
         <option value="expense">Expense</option>
       </select>
@@ -28,17 +24,17 @@
       <button id="addButton" onClick="addToBudget()">ADD</button>
     </div>
     <div class="summaryContainer">
-      <div id="block"><span>Total Budget</span><span class="amountText" id="totalBudget"> 0</span></div>
-      <div id="block"><span>Total Income</span><span class="amountText" id="incomeTotal">+ 0</span></div>
-      <div id="block"><span>Total Expense</span><span class="amountText" id="expenseTotal">- 0</span></div>
+      <div class="block"><span>Total Budget</span><span class="amountText" id="totalBudget"> 0</span></div>
+      <div class="block incomeText"><span>Total Income</span><span class="amountText" id="incomeTotal">+ 0</span></div>
+      <div class="block expenseText"><span>Total Expense</span><span class="amountText" id="expenseTotal">- 0</span></div>
 
     </div>
     <div class="budgetContainer">
       <div class="incomeContainer">
-        <h3>Incomes</h3>
+        <h3 class="incomeText">Incomes</h3>
       </div>
       <div class="expenseContainer">
-        <h3>Expenses</h3>
+        <h3 class="expenseText">Expenses</h3>
         </div>
       </div>
     </div>

@@ -4,18 +4,16 @@ body {
 
 .headerContainer {
   height: 50px;
-  border: 1px solid;
-  padding: 20px;
-  border-radius: 4px;
+  padding: 15px;
 }
 
 .inputContainer {
   margin-top: 10px;
-  border: 1px solid;
   padding: 15px;
   border-radius: 4px;
   display: flex;
   justify-content: center;
+  background-color: #e6e6e6;
 }
 
 h1 {
@@ -28,6 +26,7 @@ h1 {
   border-radius: 4px;
   padding-left: 10px;
   margin-left: 15px;
+  border: 1px solid gray;
 }
 
 #valueInput {
@@ -36,12 +35,15 @@ h1 {
   border-radius: 4px;
   padding-left: 5px;
   margin-left: 15px;
+  border: 1px solid gray;
 }
 
 #budgetType {
   height: 30px;
   background: white;
   border-radius: 4px;
+  border: 1px solid gray;
+  cursor: pointer;
 }
 
 .budgetContainer {
@@ -64,12 +66,21 @@ h1 {
   flex: 1;
 }
 
+.leftContainer {
+  display: flex;
+  align-items: center;
+}
+.deleteIcon {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
 button {
   height: 30px;
   border-radius: 4px;
   margin-left: 15px;
   cursor: pointer;
-  background: black;
+  background: green;
   color: white;
   border: none;
   font-weight: 500;
@@ -80,18 +91,18 @@ button {
   border-radius: 4px;
   border: 1px solid;
   padding: 5px 15px;
-  width: 350px;
+  width: 300px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .salaryText {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .salaryAmount {
-  font-size: 18px;
+  font-size: 14px;
   font-family: Arial;
   font-weight: 500;
 }
@@ -100,10 +111,18 @@ h3 {
   margin: 0;
 }
 
+.incomeText {
+  color: green;
+}
+
+.expenseText {
+  color: #dc0000;
+}
+
 .summaryContainer {
   margin-top: 10px;
   border-radius: 4px;
-  border: 1px solid;
+  border: 1px solid gray;
   padding: 10px 15px;
   display: flex;
   flex-direction: column;
@@ -111,8 +130,7 @@ h3 {
   align-items: center;
 }
 
-#block {
-  border: 1px solid;
+.block {
   padding: 5px 15px;
   margin: 5px;
   min-width: 150px;
