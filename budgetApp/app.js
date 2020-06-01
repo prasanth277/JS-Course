@@ -43,10 +43,10 @@ function getTotalSum(type) {
   let sum = 0;
   data.map((item) => {
     if (item.type === type) {
-      type = "number";
       sum += item.value;
     }
   });
+  console.log("object", sum);
   return sum;
 }
 
