@@ -30,6 +30,7 @@ function getEntryDetails() {
   let type = document.getElementById("budgetType").value;
   document.getElementById("descriptionInput").value = "";
   document.getElementById("valueInput").value = "";
+  document.getElementById("descriptionInput").focus();
 
   const ID = data.length;
   if (type === "income") {
@@ -46,20 +47,34 @@ function getTotalSum(type) {
       sum += item.value;
     }
   });
-  console.log("object", sum);
   return sum;
 }
 
 function updateTotalValues() {
-  document.getElementById("incomeTotal").textContent = `+ ${getTotalSum(
-    "income"
-  ).toFixed(2)}`;
-  document.getElementById("expenseTotal").textContent = `- ${getTotalSum(
-    "expense"
-  ).toFixed(2)}`;
+  let totalIncome = getTotalSum("income");
+  let totalExpense = getTotalSum("expense");
+  let expensePercentage;
+  if (totalIncome > 0) {
+    expensePercentage = Math.abs((totalExpense / totalIncome) * 100);
+  }
+  document.getElementById("incomeTotal").textContent = `+ ${totalIncome.toFixed(
+    2
+  )}`;
+  document.getElementById(
+    "expenseTotal"
+  ).textContent = `- ${totalExpense.toFixed(2)}`;
+
   let budget = getTotalSum("income") - getTotalSum("expense");
   document.getElementById("totalBudget").style.color =
     budget >= 0 ? "green" : "red";
+
+  if (expensePercentage && expensePercentage >= 0) {
+    document.getElementById(
+      "expensePercentage"
+    ).textContent = `${expensePercentage}%`;
+  } else {
+    document.getElementById("expensePercentage").textContent = `---`;
+  }
 
   document.getElementById("totalBudget").textContent = `${budget.toFixed(2)}`;
 }
@@ -72,9 +87,11 @@ document.addEventListener("keypress", function (event) {
 
 function addToBudget() {
   let budgetEntry = getEntryDetails();
-  addRow(budgetEntry);
-  data.push(budgetEntry);
-  updateTotalValues();
+  if (budgetEntry.description != "" && budgetEntry.value != NaN) {
+    addRow(budgetEntry);
+    data.push(budgetEntry);
+    updateTotalValues();
+  }
 }
 
 function removeFromBudget(id) {
