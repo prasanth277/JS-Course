@@ -132,3 +132,5 @@ function addRow(budgetEntry) {
 function removeRow(itemId) {
   document.getElementById(itemId).remove();
 }
+
+//TODO: expense budget percentage, formatting numbers, displaying month and year
